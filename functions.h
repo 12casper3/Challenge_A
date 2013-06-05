@@ -31,6 +31,7 @@ void drive(int distance);
 void drive_to_intersection(int uitgang);
 void print_curr_position();
 void print_data();
+void print_commands();
 
 
 #endif // FUNCTIONS_H_INCLUDED

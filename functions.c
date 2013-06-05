@@ -46,14 +46,17 @@ void turn(int control)
     {
     case CCLOCKWISE :
         printf("turn(%d) ccw (rightwheel only)\n",control);
+        //todo
         curr_direction--;
         break;
     case UTURN :
         printf("turn(%d) U-turn",control);
+        //todo
         curr_direction += 2;
         break;
     case CLOCKWISE  :
         printf("turn(%d) cw (leftwheel only)\n",control);
+        //todo
         curr_direction++;
         break;
     }
@@ -86,6 +89,7 @@ void drive(int distance)
 
     //printf("drive(%d)\t(%d)\n", distance,temp);
     printf("drive(%d)\n", distance);
+    //todo
 
     print_data();
 }
@@ -101,6 +105,12 @@ void print_data()
     printf("\tcurr_position:(%d,%d)\tcurr_direction:%d\n\n\n\n",curr_position[0],curr_position[1],curr_direction);
 }
 
+void print_commands()
+{
+    //printf("\tcurr_position:(%d,%d)\tcurr_direction:%d\n\n\n\n",curr_position[0],curr_position[1],curr_direction);
+    //TODO
+}
+
 void drive_exit(int direction)
 {
     printf("Direction exit: %d\t curr_direction:%d\n",direction,curr_direction);
@@ -111,11 +121,11 @@ void drive_exit(int direction)
         //printf("Make a turn for Exit!\n");
         if(curr_direction<direction)
         {
-            turn(3); // Right
+            turn(CLOCKWISE); // Right
         }
         else
         {
-            turn(1); // Left
+            turn(CCLOCKWISE); // Left
         }
     }
     else
@@ -160,15 +170,15 @@ void drive_to_intersection(int uitgang)
 
         if(driveY >0)
         {
-            if(curr_direction==3) turn(3);
-            if(curr_direction==1) turn(1);
+            if(curr_direction==3) turn(CLOCKWISE);
+            if(curr_direction==1) turn(CCLOCKWISE);
             drive(driveY);
 
         }
         else
         {
-            if(curr_direction==3) turn(1);
-            if(curr_direction==1) turn(3);
+            if(curr_direction==3) turn(CCLOCKWISE);
+            if(curr_direction==1) turn(CLOCKWISE);
             drive(-driveY);
         }
 
@@ -199,16 +209,16 @@ void drive_to_intersection(int uitgang)
 
         if(driveX >0)
         {
-            if(curr_direction==0) turn(3);
-            if(curr_direction==2) turn(1);
+            if(curr_direction==0) turn(CLOCKWISE);
+            if(curr_direction==2) turn(CCLOCKWISE);
             drive(driveX);
 
         }
         else
         {
 
-            if(curr_direction==0) turn(1);
-            if(curr_direction==2) turn(3);
+            if(curr_direction==0) turn(CCLOCKWISE);
+            if(curr_direction==2) turn(CLOCKWISE);
             drive(-driveX);
         }
 

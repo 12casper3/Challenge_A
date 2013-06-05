@@ -12,7 +12,7 @@ int main(int argc, char ** argv)
     //scanf("%d %d %d",&checkpoints[0],&checkpoints[1],&checkpoints[2]);
 checkpoints[0]= 2;
 checkpoints[1]= 3;
-checkpoints[2]= 2;
+checkpoints[2]= 4;
 
     printf("First checkpoint:%d @(%d,%d)\n",checkpoints[0],uitgangen[checkpoints[0]-1][0],uitgangen[checkpoints[0]-1][1]);
     printf("Second checkpoint:%d @(%d,%d)\n",checkpoints[1],uitgangen[checkpoints[1]-1][0],uitgangen[checkpoints[1]-1][1]);
