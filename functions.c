@@ -23,7 +23,8 @@ int uitgangen[12][2] =
 int direction_exit[12] = {2,2,2,1,1,1,0,0,0,3,3,3};
 
 int curr_direction = 0; //0 = north
-int curr_position[2]= {1,0};
+//int curr_position[2]= {1,0};
+int curr_position[2];
 int checkpoints[3];
 
 int res[50];
@@ -50,6 +51,7 @@ void turn(int control)
         printf("turn(%d) ccw (rightwheel only)\n",control);
         //todo
         res[curr_command] = LEFTDATA;
+         printf("%x \n", res[curr_command]);
         curr_command++;
 
         curr_direction--;
@@ -58,8 +60,10 @@ void turn(int control)
         printf("turn(%d) U-turn",control);
         //todo
         res[curr_command] = RIGHTDATA;
+         printf("%x \n", res[curr_command]);
         curr_command++;
         res[curr_command] = RIGHTDATA;
+         printf("%x \n", res[curr_command]);
         curr_command++;
 
         curr_direction += 2;
@@ -68,6 +72,7 @@ void turn(int control)
         printf("turn(%d) cw (leftwheel only)\n",control);
         //todo
         res[curr_command] = RIGHTDATA;
+         printf("%x \n", res[curr_command]);
         curr_command++;
 
         curr_direction++;
@@ -106,6 +111,7 @@ void drive(int distance)
     temp_distance = distance *2;
     while(temp_distance){
     res[curr_command] = FORWARDDATA;
+     printf("%x \n", res[curr_command]);
     curr_command++;
     temp_distance--;
     }
@@ -184,6 +190,7 @@ void drive_exit(int direction)
     }
     printf("Drove 12cm for an exit\n");
      res[curr_command] = FORWARDDATA;
+      printf("%x \n", res[curr_command]);
         curr_command++;
     print_data();
 }
@@ -216,7 +223,7 @@ void drive_to_intersection(int uitgang)
             return;
         }
 
-        if(driveY >0)
+        else if(driveY >0)
         {
             if(curr_direction==3) turn(CLOCKWISE);
             if(curr_direction==1) turn(CCLOCKWISE);
@@ -255,7 +262,7 @@ void drive_to_intersection(int uitgang)
             //return;
         }
 
-        if(driveX >0)
+        else if(driveX >0)
         {
             if(curr_direction==0) turn(CLOCKWISE);
             if(curr_direction==2) turn(CCLOCKWISE);

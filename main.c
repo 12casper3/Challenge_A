@@ -8,11 +8,19 @@ int i=0;
 
 int main(int argc, char ** argv)
 {
+int start;
+checkpoints[0]= 1;
+checkpoints[1]= 1;
+checkpoints[2]= 1;
+
+curr_position[0] = 1;
+curr_position[1] = 0;
 
     //scanf("%d %d %d",&checkpoints[0],&checkpoints[1],&checkpoints[2]);
-checkpoints[0]= 5;
-checkpoints[1]= 10;
-checkpoints[2]= 1;
+    scanf("%d %d",&start,&checkpoints[0]);
+
+curr_position[0] = uitgangen[start-1][0];
+curr_position[1] = uitgangen[start-1][1];
 
     printf("First checkpoint:%d @(%d,%d)\n",checkpoints[0],uitgangen[checkpoints[0]-1][0],uitgangen[checkpoints[0]-1][1]);
     printf("Second checkpoint:%d @(%d,%d)\n",checkpoints[1],uitgangen[checkpoints[1]-1][0],uitgangen[checkpoints[1]-1][1]);
