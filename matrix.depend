@@ -73,11 +73,28 @@
 	<stdlib.h>
 	<math.h>
 
-1370474867 source:d:\github\challenge_a\main.c
+1370520430 source:d:\github\challenge_a\main.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	"functions.h"
 
-1370474374 d:\github\challenge_a\functions.h
+1370516969 d:\github\challenge_a\functions.h
+
+1370519662 source:d:\github\challenge_a\functions.c
+	"functions.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1370431491 source:d:\github\challenge_a\serial.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<Windows.h>
+	<string.h>
+	<conio.h>
+	"serial.h"
+
+1370431491 d:\github\challenge_a\serial.h
 

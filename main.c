@@ -10,9 +10,9 @@ int main(int argc, char ** argv)
 {
 
     //scanf("%d %d %d",&checkpoints[0],&checkpoints[1],&checkpoints[2]);
-checkpoints[0]= 2;
-checkpoints[1]= 3;
-checkpoints[2]= 4;
+checkpoints[0]= 5;
+checkpoints[1]= 10;
+checkpoints[2]= 1;
 
     printf("First checkpoint:%d @(%d,%d)\n",checkpoints[0],uitgangen[checkpoints[0]-1][0],uitgangen[checkpoints[0]-1][1]);
     printf("Second checkpoint:%d @(%d,%d)\n",checkpoints[1],uitgangen[checkpoints[1]-1][0],uitgangen[checkpoints[1]-1][1]);
@@ -27,7 +27,7 @@ checkpoints[2]= 4;
     printf("Start opdracht!----------------------------------------------------\n\n\n");
 
 
-    drive_exit(curr_direction);
+   //drive_exit(curr_direction);
     drive_to_intersection(checkpoints[i]-1);
     drive_exit(direction_exit[checkpoints[i]-1]);
 
@@ -45,6 +45,10 @@ checkpoints[2]= 4;
 
     printf("Checkpoint %d reached!!<<<<<<<<<<<<<<<<<<<<<<\n",i+1);
     print_data();
+
+    print_commands();
+    send_commands();
+
 
     printf("END!");
     return 1;

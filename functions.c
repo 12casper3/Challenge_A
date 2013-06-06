@@ -26,6 +26,8 @@ int curr_direction = 0; //0 = north
 int curr_position[2]= {1,0};
 int checkpoints[3];
 
+int res[50];
+int curr_command = 0;
 
 int mod (int a, int b)
 {
@@ -47,16 +49,27 @@ void turn(int control)
     case CCLOCKWISE :
         printf("turn(%d) ccw (rightwheel only)\n",control);
         //todo
+        res[curr_command] = LEFTDATA;
+        curr_command++;
+
         curr_direction--;
         break;
     case UTURN :
         printf("turn(%d) U-turn",control);
         //todo
+        res[curr_command] = RIGHTDATA;
+        curr_command++;
+        res[curr_command] = RIGHTDATA;
+        curr_command++;
+
         curr_direction += 2;
         break;
     case CLOCKWISE  :
         printf("turn(%d) cw (leftwheel only)\n",control);
         //todo
+        res[curr_command] = RIGHTDATA;
+        curr_command++;
+
         curr_direction++;
         break;
     }
@@ -67,7 +80,7 @@ void turn(int control)
 
 void drive(int distance)
 {
-    //int temp = distance;
+    int temp_distance = 0;
 
     distance = abs(distance);
     switch(curr_direction)
@@ -90,7 +103,12 @@ void drive(int distance)
     //printf("drive(%d)\t(%d)\n", distance,temp);
     printf("drive(%d)\n", distance);
     //todo
-
+    temp_distance = distance *2;
+    while(temp_distance){
+    res[curr_command] = FORWARDDATA;
+    curr_command++;
+    temp_distance--;
+    }
     print_data();
 }
 
@@ -105,10 +123,38 @@ void print_data()
     printf("\tcurr_position:(%d,%d)\tcurr_direction:%d\n\n\n\n",curr_position[0],curr_position[1],curr_direction);
 }
 
+void send_commands()
+{
+int i =0;
+    //initSerial(globalArgs.comport);
+    initSerial("COM3");
+    char byteBuffer[32] = {0};
+    for (i = 0; res[i] != 0; i++)
+    {
+        while (byteBuffer[0] != BLACKDATA)
+        {
+            readByte(byteBuffer);
+            printf("waiting for data. byteBuffer[0] = %x\n", byteBuffer[0]);
+        }
+        while (byteBuffer[0] == BLACKDATA)
+        {
+            writeByte(&res[i]);
+            printf("Written data = %x\n", res[i]);
+            memset(byteBuffer, 0, sizeof(byteBuffer));
+            readByte(byteBuffer);
+        }
+    }
+}
+
 void print_commands()
 {
-    //printf("\tcurr_position:(%d,%d)\tcurr_direction:%d\n\n\n\n",curr_position[0],curr_position[1],curr_direction);
     //TODO
+    for(curr_command = 0 ; res[curr_command]!=0 ; curr_command++)
+    {
+
+        printf("%x \n", res[curr_command]);
+    }
+
 }
 
 void drive_exit(int direction)
@@ -133,10 +179,12 @@ void drive_exit(int direction)
         //printf("Else\n");
         if(curr_direction == (direction+2) % 4)
         {
-            turn(2); // U-turn
+            turn(UTURN); // U-turn
         }
     }
     printf("Drove 12cm for an exit\n");
+     res[curr_command] = FORWARDDATA;
+        curr_command++;
     print_data();
 }
 
