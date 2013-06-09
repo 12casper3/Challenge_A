@@ -6,17 +6,26 @@
 int i=0;
 
 
-int main(int argc, char ** argv)
+int main(int argc, char *argv[])
 {
+
+ if ( argc != 2 ) /* argc should be 2 for correct execution */
+    {
+checkpoints[0]= argv[1];
+checkpoints[1]= argv[2];
+checkpoints[2]= argv[3];
+    }
+    else{
+    printf("error");
+    }
+
 int start;
-checkpoints[0]= 1;
-checkpoints[1]= 1;
-checkpoints[2]= 1;
+
 
 curr_position[0] = 1;
 curr_position[1] = 0;
 
-    scanf("%d %d %d",&checkpoints[0],&checkpoints[1],&checkpoints[2]);
+    //scanf("%d %d %d",&checkpoints[0],&checkpoints[1],&checkpoints[2]);
     //scanf("%d %d",&start,&checkpoints[0]);
 
 //curr_position[0] = uitgangen[start-1][0];
