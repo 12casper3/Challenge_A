@@ -2,6 +2,7 @@
 #define FUNCTIONS_H_INCLUDED
 
 
+extern int verbose;
 
 extern int uitgangen[12][2];
 extern int direction_exit[12];
@@ -10,7 +11,7 @@ extern int curr_direction;
 extern int curr_position[2];
 extern int checkpoints[3];
 
-extern int res[50];
+extern int res[100];
 extern int curr_command;
 
 enum CONTROL {
@@ -33,6 +34,7 @@ enum DIRECTIONS {
 #define FORWARDDATA 0x33
 #define RIGHTDATA   0x32
 #define MINECRAFT   0x39
+#define GOALDATA    0x17
 
 
 int mod(int a,int b);
@@ -43,6 +45,7 @@ void drive_to_intersection(int uitgang);
 void print_curr_position();
 void print_data();
 void print_commands();
+void send_commands();
 
 //For Serial:
 void cleanUp(void);

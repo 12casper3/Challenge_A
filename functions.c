@@ -27,7 +27,7 @@ int curr_direction = 0; //0 = north
 int curr_position[2];
 int checkpoints[3];
 
-int res[50];
+int res[100];
 int curr_command = 0;
 
 int mod (int a, int b)
@@ -48,31 +48,51 @@ void turn(int control)
     switch(control)
     {
     case CCLOCKWISE :
-        printf("turn(%d) ccw (rightwheel only)\n",control);
-        //todo
+        if(verbose)
+        {
+            printf("turn(%d) ccw (rightwheel only)\n",control);
+        }
         res[curr_command] = LEFTDATA;
-         printf("%x \n", res[curr_command]);
+        if(verbose)
+        {
+            printf("%x \n", res[curr_command]);
+        }
         curr_command++;
 
         curr_direction--;
         break;
     case UTURN :
-        printf("turn(%d) U-turn",control);
+        if(verbose)
+        {
+            printf("turn(%d) U-turn",control);
+        }
         //todo
         res[curr_command] = RIGHTDATA;
-         printf("%x \n", res[curr_command]);
+        if(verbose)
+        {
+            printf("%x \n", res[curr_command]);
+        }
         curr_command++;
         res[curr_command] = RIGHTDATA;
-         printf("%x \n", res[curr_command]);
+        if(verbose)
+        {
+            printf("%x \n", res[curr_command]);
+        }
         curr_command++;
 
         curr_direction += 2;
         break;
     case CLOCKWISE  :
-        printf("turn(%d) cw (leftwheel only)\n",control);
+        if(verbose)
+        {
+            printf("turn(%d) cw (leftwheel only)\n",control);
+        }
         //todo
         res[curr_command] = RIGHTDATA;
-         printf("%x \n", res[curr_command]);
+        if(verbose)
+        {
+            printf("%x \n", res[curr_command]);
+        }
         curr_command++;
 
         curr_direction++;
@@ -106,32 +126,44 @@ void drive(int distance)
     }
 
     //printf("drive(%d)\t(%d)\n", distance,temp);
-    printf("drive(%d)\n", distance);
+    if(verbose)
+    {
+        printf("drive(%d)\n", distance);
+    }
     //todo
     temp_distance = distance *2;
-    while(temp_distance){
-    res[curr_command] = FORWARDDATA;
-     printf("%x \n", res[curr_command]);
-    curr_command++;
-    temp_distance--;
+    while(temp_distance)
+    {
+        res[curr_command] = FORWARDDATA;
+        if(verbose)
+        {
+            printf("%x \n", res[curr_command]);
+        }
+        curr_command++;
+        temp_distance--;
     }
     print_data();
 }
 
 void print_curr_position()
 {
-    printf("curr_position:(%d,%d)\n\n",curr_position[0],curr_position[1]);
-
+    if(verbose)
+    {
+        printf("curr_position:(%d,%d)\n\n",curr_position[0],curr_position[1]);
+    }
 }
 
 void print_data()
 {
-    printf("\tcurr_position:(%d,%d)\tcurr_direction:%d\n\n\n\n",curr_position[0],curr_position[1],curr_direction);
+    if(verbose)
+    {
+        printf("\tcurr_position:(%d,%d)\tcurr_direction:%d\n\n\n\n",curr_position[0],curr_position[1],curr_direction);
+    }
 }
 
 void send_commands()
 {
-int i =0;
+    int i =0;
     //initSerial(globalArgs.comport);
     initSerial("COM3");
     char byteBuffer[32] = {0};
@@ -154,7 +186,7 @@ int i =0;
 
 void print_commands()
 {
-    //TODO
+    curr_command= 0;
     for(curr_command = 0 ; res[curr_command]!=0 ; curr_command++)
     {
 
@@ -165,8 +197,10 @@ void print_commands()
 
 void drive_exit(int direction)
 {
-    printf("Direction exit: %d\t curr_direction:%d\n",direction,curr_direction);
-
+    if(verbose)
+    {
+        printf("Direction exit: %d\t curr_direction:%d\n",direction,curr_direction);
+    }
 //Need a turn
     if(curr_direction%2 != direction%2)
     {
@@ -188,10 +222,15 @@ void drive_exit(int direction)
             turn(UTURN); // U-turn
         }
     }
-    printf("Drove 12cm for an exit\n");
-     res[curr_command] = FORWARDDATA;
-      printf("%x \n", res[curr_command]);
-        curr_command++;
+    if(verbose)
+    {
+        printf("Drove 12cm for an exit\n");
+    }
+    res[curr_command] = FORWARDDATA;
+    if(verbose)
+        {
+    printf("%x \n", res[curr_command]);}
+    curr_command++;
     print_data();
 }
 
@@ -208,7 +247,10 @@ void drive_to_intersection(int uitgang)
         //printf("driveX now");
         if(driveX==0)
         {
-            printf("drive(NULL)\n\n");
+            if(verbose)
+            {
+                printf("drive(NULL)\n\n");
+            }
         }
         else
         {
@@ -221,7 +263,10 @@ void drive_to_intersection(int uitgang)
 
         if(driveY==0)
         {
-            printf("drive(NULL)\n\n");
+            if(verbose)
+            {
+                printf("drive(NULL)\n\n");
+            }
         }
 
         else if(driveY >0)
@@ -242,12 +287,15 @@ void drive_to_intersection(int uitgang)
     else
     {
         //VERTICAL:
-        printf("drive vertical first\n\n");
+
         driveY = uitgangen[uitgang][1]- curr_position[1];
 
         if(driveY==0)
         {
-            printf("drive(NULL)\n\n");
+            if(verbose)
+            {
+                printf("drive(NULL)\n\n");
+            }
             //return;
         }
         else
@@ -259,7 +307,10 @@ void drive_to_intersection(int uitgang)
 
         if(driveX==0)
         {
-            printf("drive(NULL)\n\n");
+            if(verbose)
+            {
+                printf("drive(NULL)\n\n");
+            }
             //return;
         }
 
