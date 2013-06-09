@@ -79,7 +79,7 @@ void turn(int control)
         break;
     }
 
-    curr_direction = mod(curr_direction,3);
+    curr_direction = mod(curr_direction,4);
     print_data();
 }
 
@@ -203,24 +203,25 @@ void drive_to_intersection(int uitgang)
     if(curr_direction%2)
     {
         //HORIZONTAL
+        //printf("drive horizontal first\n\n");
         driveX = uitgangen[uitgang][0] - curr_position[0];
-
+        //printf("driveX now");
         if(driveX==0)
         {
             printf("drive(NULL)\n\n");
-            return;
         }
         else
         {
             drive(driveX);
         }
 
+        //printf("driveY now");
         driveY = uitgangen[uitgang][1]- curr_position[1];
+
 
         if(driveY==0)
         {
             printf("drive(NULL)\n\n");
-            return;
         }
 
         else if(driveY >0)
@@ -241,7 +242,7 @@ void drive_to_intersection(int uitgang)
     else
     {
         //VERTICAL:
-
+        printf("drive vertical first\n\n");
         driveY = uitgangen[uitgang][1]- curr_position[1];
 
         if(driveY==0)

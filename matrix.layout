@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="functions.c" open="1" top="1" tabpos="1">
-		<Cursor position="5876" topLine="247" />
+	<File name="functions.c" open="1" top="1" tabpos="2">
+		<Cursor position="4357" topLine="209" />
 	</File>
-	<File name="functions.h" open="1" top="0" tabpos="2">
-		<Cursor position="308" topLine="21" />
+	<File name="functions.h" open="1" top="0" tabpos="3">
+		<Cursor position="298" topLine="7" />
 	</File>
-	<File name="main.c" open="1" top="0" tabpos="4">
-		<Cursor position="1437" topLine="29" />
+	<File name="main.c" open="1" top="0" tabpos="1">
+		<Cursor position="1332" topLine="25" />
 	</File>
-	<File name="serial.c" open="1" top="0" tabpos="3">
+	<File name="serial.c" open="1" top="0" tabpos="4">
 		<Cursor position="428" topLine="45" />
 	</File>
 </CodeBlocks_layout_file>

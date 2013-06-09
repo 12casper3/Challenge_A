@@ -14,7 +14,7 @@ extern int res[50];
 extern int curr_command;
 
 enum CONTROL {
-	CCLOCKWISE = 0,
+	CCLOCKWISE = 1,
 	UTURN,
 	CLOCKWISE
 };
